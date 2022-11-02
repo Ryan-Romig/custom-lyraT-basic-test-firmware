@@ -4,5 +4,5 @@
 
 extern "C" void app_main(void)
 {
-    init_button_listeners();
+    init_buttons_listener();
 }

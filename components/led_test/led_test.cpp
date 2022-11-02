@@ -9,26 +9,13 @@
 #define FORWARD_BUTTON_PIN GPIO_NUM_19
 #define CENTER_BUTTON_PIN GPIO_NUM_27
 xTaskHandle ledHandle;
-void center_button_listener_task(void* pvParams)
-{
-    gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
-    gpio_set_direction(CENTER_BUTTON_PIN, GPIO_MODE_INPUT);
-    while (1) {
-        if (gpio_get_level(CENTER_BUTTON_PIN) == 0) {
-            gpio_set_level(LED_PIN, 0);
-        }
-        else{
-            gpio_set_level(LED_PIN, 1);
-        }
-        vTaskDelay(1);
-    }
-}
-void back_button_listener_task(void* pvParams)
+
+void button_listener_task(void* pvParams)
 {
     gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
     gpio_set_direction(BACK_BUTTON_PIN, GPIO_MODE_INPUT);
     while (1) {
-        if (gpio_get_level(BACK_BUTTON_PIN) == 0) {
+        if (gpio_get_level(BACK_BUTTON_PIN) == 0 || gpio_get_level(FORWARD_BUTTON_PIN) == 0 || gpio_get_level(CENTER_BUTTON_PIN) == 0) {
             gpio_set_level(LED_PIN, 0);
         }
         else{
@@ -37,24 +24,9 @@ void back_button_listener_task(void* pvParams)
         vTaskDelay(1);
     }
 }
-void forward_button_listener_task(void* pvParams)
-{
-    gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
-    gpio_set_direction(FORWARD_BUTTON_PIN, GPIO_MODE_INPUT);
-    while (1) {
-        if (gpio_get_level(FORWARD_BUTTON_PIN) == 0) {
-            gpio_set_level(LED_PIN, 0);
-        }
-        else{
-            gpio_set_level(LED_PIN, 1);
-        }
-        vTaskDelay(1);
-    }
-}
-void init_button_listeners(){
-    xTaskCreate(&center_button_listener_task, "LED_BLINK", 512, NULL, 5, NULL);
-    xTaskCreate(&back_button_listener_task, "LED_BLINK", 512, NULL, 5, NULL);
-    // xTaskCreate(&forward_button_listener_task, "LED_BLINK", 512, NULL, 5, NULL);
+
+void init_buttons_listener(){
+    xTaskCreate(&button_listener_task, "BUTTON_LISTENER", 512, NULL, 5, NULL);
 }
 
 void slow_led_blink_task(void* pvParams)
