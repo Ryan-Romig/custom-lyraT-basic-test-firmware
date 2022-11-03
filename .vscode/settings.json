@@ -7,6 +7,7 @@
     "led_test.hpp": "c",
     "esp_wifi.h": "c",
     "*.inc": "c",
-    "global.h": "c"
+    "global.h": "c",
+    "dac_test.h": "c"
   }
 }
