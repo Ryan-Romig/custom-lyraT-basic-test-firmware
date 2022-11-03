@@ -2,6 +2,8 @@
 #include "../../main/Global.h"
 #include "include/dac_test.h"
 #include "driver/i2c.h"
+#include "esp_log.h"
+
 
 
 static const char *TAG = "dac_test";
@@ -16,7 +18,10 @@ static const char *TAG = "dac_test";
 #define DELAY_MS		1000
 
 
-void dac_test_task(){
+void dac_test_task(void* pvParams){
+    gpio_pad_select_gpio(DAC_PSU_ENABLE);
+	    gpio_set_direction(DAC_PSU_ENABLE, GPIO_MODE_OUTPUT);
+	gpio_set_level(DAC_PSU_ENABLE, 1);
 	uint8_t rx_data[5];
 	i2c_config_t conf = {
 		.mode = I2C_MODE_MASTER,
@@ -30,15 +35,15 @@ void dac_test_task(){
 	ESP_ERROR_CHECK(i2c_driver_install(I2C_NUM_0, I2C_MODE_MASTER, 0, 0, 0));
 	while (1) {
 		i2c_master_read_from_device(I2C_NUM_0, I2C_SLAVE_ADDR, rx_data, 5, TIMEOUT_MS/portTICK_RATE_MS);
-
-        }
+    ESP_LOGI(TAG, "DAC SUCESS!");
+		ESP_LOG_BUFFER_HEX(TAG, rx_data, 5);
 		vTaskDelay(DELAY_MS/portTICK_RATE_MS);
+		        }
 	}
 
 
 void start_dac_test()
 {
-
-    xTaskCreatePinnedToCore(dac_test_task, TAG, configMINIMAL_STACK_SIZE * 8, NULL, 1, NULL, APP_CPU_NUM);
+	// xTaskCreate(dac_test_task,"DAC_TEST_TASK", 512 , NULL, 5, NULL);
 
 }

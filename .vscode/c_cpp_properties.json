@@ -9,6 +9,8 @@
                 "${config:idf.espIdfPath}/components/**",
                 "${config:idf.espAdfPath}/components/**",
                 "${workspaceFolder}/**",
+                // "/home/dev/esp/arduino/**"
+
 
             ],
             "browse": {
@@ -17,6 +19,7 @@
                     "${config:idf.espAdfPath}/components/**",
                     "${workspaceFolder}",
                     "${workspaceFolder}/**",
+                    // "/home/dev/esp/arduino/**"
 
                 ],
                 "limitSymbolsToIncludedHeaders": false

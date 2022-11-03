@@ -10,5 +10,5 @@ extern "C" void app_main(void)
     init_buttons_listener();
     init_wifi_blink_listener();
     start_wifi_test();
-    // start_dac_test();
+    start_dac_test();
 }

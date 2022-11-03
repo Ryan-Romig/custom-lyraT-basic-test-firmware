@@ -12,6 +12,7 @@ xTaskHandle ledHandle;
 
 void button_listener_task(void *pvParams)
 {
+    
     gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
     gpio_set_direction(BACK_BUTTON_PIN, GPIO_MODE_INPUT);
     while (1)
@@ -24,7 +25,7 @@ void button_listener_task(void *pvParams)
         {
             gpio_set_level(LED_PIN, 1);
         }
-        vTaskDelay(10);
+        vTaskDelay(20);
     }
 }
 
@@ -100,7 +101,7 @@ void wifi_led_blink_task(void *pvParams)
             vTaskDelay(2000 / portTICK_RATE_MS);
             continue;
         }
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(1);
     }
 }
 void init_wifi_blink_listener()
