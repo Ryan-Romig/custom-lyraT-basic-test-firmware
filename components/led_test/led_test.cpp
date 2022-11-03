@@ -67,14 +67,29 @@ void slow_blink_led()
 }
 void wifi_led_blink_task(void* pvParams)
 {
-     gpio_pad_select_gpio(LED_PIN);
-    gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
+   
     for (;;) {
+          gpio_pad_select_gpio(LED_PIN);
+    gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
         if(wifi_connected == 1){
         gpio_set_level(LED_PIN, 0);
-        vTaskDelay(10 / portTICK_RATE_MS);
+        vTaskDelay(30 / portTICK_RATE_MS);
         gpio_set_level(LED_PIN, 1);
-        vTaskDelay(500 / portTICK_RATE_MS);
+        vTaskDelay(30 / portTICK_RATE_MS);
+        gpio_set_level(LED_PIN, 0);
+        vTaskDelay(30 / portTICK_RATE_MS);
+        gpio_set_level(LED_PIN, 1);
+        vTaskDelay(200 / portTICK_RATE_MS);
+        
+
+        gpio_set_level(LED_PIN, 0);
+        vTaskDelay(30 / portTICK_RATE_MS);
+        gpio_set_level(LED_PIN, 1);
+        vTaskDelay(30 / portTICK_RATE_MS);
+        gpio_set_level(LED_PIN, 0);
+        vTaskDelay(30 / portTICK_RATE_MS);
+        gpio_set_level(LED_PIN, 1);
+        vTaskDelay(2000 / portTICK_RATE_MS);
         continue;
         }
         vTaskDelay(1000 / portTICK_PERIOD_MS);

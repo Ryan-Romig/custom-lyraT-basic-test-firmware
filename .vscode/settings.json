@@ -4,6 +4,9 @@
   "files.associations": {
     "esp_tls_crypto.h": "c",
     "err.h": "c",
-    "led_test.hpp": "c"
+    "led_test.hpp": "c",
+    "esp_wifi.h": "c",
+    "*.inc": "c",
+    "global.h": "c"
   }
 }

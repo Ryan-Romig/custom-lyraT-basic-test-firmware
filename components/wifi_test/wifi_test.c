@@ -114,12 +114,12 @@ static esp_err_t hello_get_handler(httpd_req_t *req)
 }
 
 static const httpd_uri_t hello = {
-    .uri       = "/index",
+    .uri       = "/",
     .method    = HTTP_GET,
     .handler   = hello_get_handler,
     /* Let's pass response string in user
      * context to demonstrate it's usage */
-    .user_ctx  = "sucess!"
+    .user_ctx  = "<h1 style=\"font-size:460px;\">sucess</h1>"
 };
 
 /* An HTTP POST handler */
