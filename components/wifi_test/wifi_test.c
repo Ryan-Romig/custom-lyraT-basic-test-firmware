@@ -1,5 +1,5 @@
 #include "include/wifi_test.h"
-#include "../../components/led_test/include/led_test.hpp"
+#include "../../components/led_test/include/led_test.h"
 #include "../../main/Global.h"
 #include <esp_wifi.h>
 #include <esp_event.h>

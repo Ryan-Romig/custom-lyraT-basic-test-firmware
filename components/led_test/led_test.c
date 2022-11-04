@@ -1,9 +1,8 @@
-#include "include/led_test.hpp"
+#include "include/led_test.h"
 #include "../../main/Global.h"
 #include <driver/gpio.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
-#include <stdio.h>
 #define LED_PIN GPIO_NUM_21
 #define BACK_BUTTON_PIN GPIO_NUM_4
 #define FORWARD_BUTTON_PIN GPIO_NUM_19
@@ -29,7 +28,7 @@ void button_listener_task(void *pvParams)
     }
 }
 
-void init_buttons_listener() { xTaskCreate(&button_listener_task, "BUTTON_LISTENER", 1024, NULL, 1, NULL); }
+void init_buttons_listener() { xTaskCreatePinnedToCore(&button_listener_task, "BUTTON_LISTENER", 1024, NULL, 1, NULL,0); }
 
 void slow_led_blink_task(void *pvParams)
 {
@@ -63,7 +62,7 @@ void fast_blink_led()
         vTaskDelete(ledHandle);
     }
     printf("led is blinking fast");
-    xTaskCreate(&fast_led_blink_task, "LED_BLINK", 512, NULL, 5, &ledHandle);
+    xTaskCreatePinnedToCore(&fast_led_blink_task, "LED_BLINK", 1024, NULL, 5, &ledHandle,0);
 }
 void slow_blink_led()
 {
@@ -71,7 +70,7 @@ void slow_blink_led()
     {
         vTaskDelete(ledHandle);
     }
-    xTaskCreate(&slow_led_blink_task, "LED_BLINK", 512, NULL, 5, &ledHandle);
+    xTaskCreatePinnedToCore(&slow_led_blink_task, "LED_BLINK", 1024, NULL, 5, &ledHandle,0);
 }
 void wifi_led_blink_task(void *pvParams)
 {
@@ -111,7 +110,7 @@ void init_wifi_blink_listener()
         vTaskDelete(ledHandle);
     }
 
-    xTaskCreate(&wifi_led_blink_task, "WIFI_LED_BLINK", 1024, NULL, 5, &ledHandle);
+    xTaskCreatePinnedToCore(&wifi_led_blink_task, "WIFI_LED_BLINK", 1024 * 2, NULL, 5, &ledHandle,0);
 }
 void back_button_blink() { printf("back button LED mode on"); }
 void play_button_blink() { printf("play button LED blink"); }

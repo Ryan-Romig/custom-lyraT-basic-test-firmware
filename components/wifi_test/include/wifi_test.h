@@ -1,1 +1,1 @@
-void start_wifi_test();
+void start_wifi_test(void);

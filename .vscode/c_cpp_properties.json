@@ -2,29 +2,26 @@
     "configurations": [
         {
             "name": "ESP-IDF",
-            "compilerPath": "/home/creature/.espressif/tools/xtensa-esp32-elf/esp-2021r2-patch3-8.4.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc",
+            "compilerPath": "",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "includePath": [
                 "${config:idf.espIdfPath}/components/**",
+                "${config:idf.espIdfPathWin}/components/**",
                 "${config:idf.espAdfPath}/components/**",
-                "${workspaceFolder}/**",
-                // "/home/dev/esp/arduino/**"
-
-
+                "${config:idf.espAdfPathWin}/components/**",
+                "${workspaceFolder}/**"
             ],
             "browse": {
                 "path": [
                     "${config:idf.espIdfPath}/components",
+                    "${config:idf.espIdfPathWin}/components",
                     "${config:idf.espAdfPath}/components/**",
-                    "${workspaceFolder}",
-                    "${workspaceFolder}/**",
-                    // "/home/dev/esp/arduino/**"
-
+                    "${config:idf.espAdfPathWin}/components/**",
+                    "${workspaceFolder}"
                 ],
                 "limitSymbolsToIncludedHeaders": false
-            },
-            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+            }
         }
     ],
     "version": 4
