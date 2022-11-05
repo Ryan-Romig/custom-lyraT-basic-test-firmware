@@ -1,15 +1,14 @@
 #Opal Test Firmware
 
 
-## Example Brief
+##  Brief
 
-This example demonstrates how the ESP-ADF uses the audio pipeline API to play MP3 files stored in flash, which can generally be used as system prompt tone files in a project.
+LED turn on while button is pressed
+wifi will blink 3 fast, delay, 3 slow, delay after booting. Should broadcast Underwater Audio ssid
+http://192.168.4.1/ will return a webpage with sucess message 
+repeats the "power on" tone every 2 seconds if DAC is working. 
 
-The pipeline for the development board to acquire the MP3 file stored in flash and decode it for playback is as follows:
 
-```
-[flash] ---> tone_stream ---> mp3_decoder ---> i2s_stream ---> [codec_chip]
-```
 
 ### Prerequisites
 
