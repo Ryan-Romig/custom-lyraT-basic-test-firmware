@@ -1,7 +1,4 @@
-# Play MP3 Files from Flash
-
-- [中文版本](./README.md)
-- Regular Example: ![alt text](../../../docs/_static/level_regular.png "Regular Example")
+#Opal Test Firmware
 
 
 ## Example Brief
@@ -57,12 +54,6 @@ The default `audio-esp.bin` of this example contains the following audio files:
 ```
 
 
-## Environment Setup
-
-### Hardware Required
-
-This example runs on the boards that are marked with a green checkbox in the [table](../../README.md#compatibility-of-examples-with-espressif-audio-boards). Please remember to select the board in menuconfig as discussed in Section [Configuration](#configuration) below.
-
 
 ## Build and Flash
 
@@ -71,14 +62,7 @@ This example runs on the boards that are marked with a green checkbox in the [ta
 This example supports IDF release/v3.3 and later branches. By default, it runs on ADF's built-in branch `$ADF_PATH/esp-idf`.
 
 
-### Configuration
 
-The default board for this example is `ESP32-Lyrat V4.3`. If you need to run this example on other development boards, select the board in menuconfig, such as `ESP32-Lyrat-Mini V1.1`.
-If you select `CONFIG_ESP32_C3_LYRA_V2_BOARD`, you need to apply `idf_v4.4_i2s_c3_pdm_tx.patch` in the `$ADF_PATH/esp-idf` directory.
-
-```
-menuconfig > Audio HAL > ESP32-Lyrat-Mini V1.1
-```
 
 The address of `flashTone` of this example is configured in `partition_flash_tone.csv` as follows. Users can configure the address flexibly according to the project flash partition.
 
@@ -92,47 +76,17 @@ flashTone,data,  0x04,  0x110000 , 500K,
 Build the project and flash it to the board, then run monitor tool to view serial output (replace PORT with your board's serial port name):
 
 ```
-idf.py -p PORT flash monitor
+idf.py flash monitor
 ```
 
 
-In addition, this example also needs to flash `/tools/audio-esp.bin` to the `flashTone` partition of `partition_flash_tone.csv`. Please use the following command. 
-If using `config_ ESP32_ C3_ LYRA_ V2_ Board`, please replace `esp32` in the following command with `esp32c3`.
+In addition, this example also needs to flash `/tools/audio-esp.bin` to the `flashTone` partition of `partition_flash_tone.csv`. Please use the following command.
 
-```
-python $ADF_PATH/esp-idf/components/esptool_py/esptool/esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size detect 0x110000 ./tools/audio-esp.bin
-
-esptool.py v2.8
-Serial port /dev/ttyUSB0
-Connecting.....
-Chip is ESP32D0WDQ5 (revision 3)
-Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
-Crystal is 40MHz
-MAC: 94:b9:7e:65:c2:44
-Uploading stub...
-Running stub...
-Stub running...
-Changing baud rate to 921600
-Changed.
-Configuring flash size...
-Auto-detected Flash size: 8MB
-Compressed 434756 bytes to 399938...
-Wrote 434756 bytes (399938 compressed) at 0x00110000 in 5.0 seconds (effective 689.2 kbit/s)...
-Hash of data verified.
-
-Leaving...
-Hard resetting via RTS pin...
-```
+python3 $ADF_PATH/esp-idf/components/esptool_py/esptool/esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size detect 0x110000 ./tools/audio-esp.bin
 
 
-To exit the serial monitor, type ``Ctrl-]``.
-
-See [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/release-v4.2/esp32/index.html) for full steps to configure and build an ESP-IDF project.
 
 
-## How to Use the Example
-
-### Example Functionality
 
 - After the example starts running, an error would be reported if the `/tools/audio-esp.bin` is not flashed to the `flashTone` partition of `partition_flash_tone.csv` beforehand. Please refer to the instructions in Section [Build and Flash](#build-and-flash) to flash it. The log is as follows:
 
@@ -334,12 +288,3 @@ W (531) AUDIO_ELEMENT: IN-[i2s] AEL_IO_ABORT
 ```
 
 If the above error occurs, please flash `/tools/audio-esp.bin` to the `flashTone` partition of `partition_flash_tone.csv` as described in Section [Build and Flash](#build-and-flash).
-
-
-## Technical Support and Feedback
-Please use the following feedback channels:
-
-* For technical queries, go to the [esp32.com](https://esp32.com/viewforum.php?f=20) forum
-* For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-adf/issues)
-
-We will get back to you as soon as possible.
