@@ -1,4 +1,3 @@
-include( ${PROJECT_DIR}/main/embed_tone.cmake )
 set(COMPONENT_SRCS ./main.c)
-set(COMPONENT_ADD_INCLUDEDIRS "." "tone")
+set(COMPONENT_ADD_INCLUDEDIRS ".")
 register_component()

@@ -1,4 +1,8 @@
 {
   "C_Cpp.intelliSenseEngine": "Tag Parser",
+  "files.associations": {
+    "led_test.h": "c",
+    "dac_test.h": "c"
+  },
   "idf.adapterTargetName": "esp32"
 }
