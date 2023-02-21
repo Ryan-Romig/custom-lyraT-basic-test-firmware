@@ -4,7 +4,7 @@
 ##  Brief
 
 LED turn on while button is pressed
-wifi will blink 3 fast, delay, 3 slow, delay after booting. Should broadcast Underwater Audio ssid
+wifi will blink 3 fast, delay, 3 slow, delay after booting. Should broadcast ESP_WIFI ssid
 http://192.168.4.1/ will return a webpage with sucess message 
 repeats the "power on" tone every 2 seconds if DAC is working. 
 
