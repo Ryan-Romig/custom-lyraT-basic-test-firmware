@@ -21,7 +21,7 @@
 #include "nvs_flash.h"
 #include "lwip/err.h"
 #include "lwip/sys.h"
-#define EXAMPLE_ESP_WIFI_SSID      "Underwater Audio"
+#define EXAMPLE_ESP_WIFI_SSID      "ESP_WIFI"
 #define EXAMPLE_ESP_WIFI_PASS      ""
 #define EXAMPLE_MAX_STA_CONN       2
 static const char *TAG = "WIFI";
