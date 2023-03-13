@@ -1,4 +1,4 @@
-#Opal Test Firmware
+#Testing Firmware for Custom ESP32 based board
 
 
 ##  Brief
